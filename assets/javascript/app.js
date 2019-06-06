@@ -1,10 +1,16 @@
 // variable for HTML form for gender preferences
-let genderInput = document.getElementById('#').value
+let genderInput = document.getElementsByName('gender').value
+console.log('Gender Chosen: ' + genderInput)
 // variable for HTML form for zipcode location
-let locationInput = document.getElementById('#zipcode-input').value
-
+let zipCodeInput = document.getElementById('#zipcode-input').value
+console.log('Zipcode Typed: ' + zipCodeInput)
+// radio button chosen for dates
+let dateTravel = document.getElementsByName('date').value
+console.log('Date Value Chosen: ' + dateTravel)
 let weatherView = document.getElementById('#weather-view')
 let clothingView = documet.getElementById('#clothing-view')
+
+
 
 document.onclick('#submit', function() {
 
