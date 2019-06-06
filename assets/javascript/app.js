@@ -16,30 +16,30 @@ let precipType = // this is from openweatherapi on type of precip. rain or snow?
 
 let clothesfromTemp = function() {
     if (temp >= 70) {
-        // it's hot shorts and t-shirts
+        console.log('Is is 70 degrees or more')
     }
     else if (temp < 70 && temp >= 50) {
-        // fall weather get a bit of clothes on
+        console.log('It is between 50 and 70 degrees')
     }
     else (temp < 50) {
-        // tryin' to eat some frostbite boi?
+        console.log('Is it below 50 degrees')
     }
 }
 
 let accessoriesrfromPrecip = function () {
     if (precipChance >= 60 && precipType === 'snow') {
-        get your milk, eggs, and bread
+        console.log('There is a great chance it will snow')
     }
     else if (precipChance >= 60 && precipType === 'rain') {
-        // keep umbrella on you
+        console.log('There is a great chance it will rain')
     }
     else if (precipChance < 60 && precipChance >= 30 && precipType === 'snow') {
-        // shovels and slush
+        console.log('Chance of slush, flutters, and needing to shovel snow')
     }
     else if (precipChance < 60 && precipChance >= 30 && precipType === 'rain') {
-        // bring umbrella just in case
+        console.log('Bring an umbrella just in case')
     }
     else {
-        bruh you good
+        console.log('We may be freezing')
     }
 }
