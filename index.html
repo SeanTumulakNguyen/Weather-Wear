@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather Wear</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="jumbotron">
+            <h1 class="text-center">Weather Wear</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card card-default">
+                    <div class="card-body">
+                        <form role="form">
+                            <div class="form-group row">
+                                <label for="zipcode" class="col-sm-2">Zipcode:</label>
+                                <input class="form-control col-sm-8" id="zipcode-input" type="number"></label>
+                            </div>
+                        </form>
+
+                        <div class="row">
+                            <p class="col-sm-2">Gender Preference:</p>
+                            <input type="radio" name="gender" value="Female">Female
+                            <br>
+                            <input type="radio" name="gender" value="Male">Male
+                        </div>
+
+                        <div class="row">
+                            <p class="col-sm-2">I'm leaving in:</p>
+                            <input type="radio" name="date" value="One Day">One Day
+                            <br>
+                            <input type="radio" name="date" value="Two Days">Two Days
+                            <br>
+                            <input type="radio" name="date" value="Three Days">Three Days
+                            <br>
+                            <input type="radio" name="date" value="Four Days">Four Days
+                            <br>
+                            <input type="radio" name="date" value="Five Days">Five Days
+                        </div>
+                        <button class="btn btn-primary float-right" id="submit" type="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="weather-view"></div>
+
+            <div id="clothing-view"></div>
+        </div>
+
+    </div>
+
+    <script src="./assets/javascript/app.js"></script>
+</body>
+
+</html>
