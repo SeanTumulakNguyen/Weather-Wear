@@ -13,7 +13,7 @@ document.getElementById('submit').onclick = function() {
     console.log('Date Value Chosen: ' + dateTravel)
 
     document.getElementById('zipcode-input').value = ''
-    
+
 }
 
 let temp
@@ -43,7 +43,6 @@ let accessoriesrfromPrecip = function () {
         console.log('We may be freezing')
     }
 }
-
 //************************************** Nick's Open Weather API******************************** */
 
 //When the submit button is clicked - get the zip code value and call Open Weather Search API
@@ -92,8 +91,24 @@ function displayWeather(response) {
         console.log(dayOne.weather[0].description)
         console.log(dayOne.weather[0].id)
 
+        //create new table row
+        var newRow = document.createElement("tr");
+        //create new data cells in row
+        var newDataTemp = document.createElement("td");
+        var newDataCond = document.createElement("td");
+        //create variables to append to data cells
+        var temp = document.createTextNode(dayOne.main.temp);
+        var cond = document.createTextNode(dayOne.weather[0].description);
+        //append variables to data cells
+        newDataTemp.appendChild(temp);
+        newDataCond.appendChild(cond);
+        //append data cells to row
+        newRow.appendChild(newDataTemp);
+        newRow.appendChild(newDataCond);
 
+        //this.list[5]
     }
+
     //If Day 2 is selected...
     else if(value === 1){
         var dayTwo = response.list[13]
@@ -101,22 +116,33 @@ function displayWeather(response) {
     }
 
     //If Day 3 is selected...
-    else if(value === 1){
+    else if(value === 2){
         var dayThree = response.list[21]
 
     }
 
     //if Day 4 is selected...
-    else if(value === 1){
+    else if(value === 3){
         var dayFour = response.list[29]
 
     }
 
     //if Day 5 is selected...
-    else if(value === 1){
+    else if(value === 4){
         var dayFive = response.list[37]
 
     }
+
+            // //create new row
+            // var newRow = $("<tr>").append(
+            //     $("<td>").text(trainName),
+            //     $("<td>").text(dest),
+            //     $("<td>").text(freq),
+            //     $("<td>").text(nextArrival),
+            //     $("<td>").text(minutesAway)
+            // );
+    
+            // $("#train-table").append(newRow);
 
 //What am I appending to? #weather-view
 
