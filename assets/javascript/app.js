@@ -85,8 +85,7 @@ function displayWeather(response) {
         console.log(dayOne.main.temp)
         console.log(dayOne.weather[0].description)
         console.log(dayOne.weather[0].id)
-
-
+    }
 
     //If Day 2 is selected...
     else if(value === 1){
