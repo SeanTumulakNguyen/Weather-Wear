@@ -17,7 +17,7 @@
     <div class="container">
         <!--Jumbotron-->
         <div class="jumbotron">
-            <h1 class="text-center">Weather Wear</h1>
+            <h1 class="text-center">Weather Wear Try</h1>
         </div>
         <div class="row">
             <div class="col-lg-12">
@@ -27,29 +27,41 @@
                         <form role="form">
                             <div class="form-group row">
                                 <label for="zipcode" class="col-sm-2">Zipcode:</label>
-                                <input class="form-control col-sm-8" id="zipcode-input" type="number"></label>
+                                <input class="form-control col-sm-4" id="zipcode-input" type="number"></label>
                             </div>
                         </form>
+                        <br>
                         <!--Gender Preference Row-->
                         <div class="row">
-                            <p class="col-sm-2">Gender Preference:</p>
-                            <input type="radio" name="gender" value="Female" id="female">Female
-                            <br>
-                            <input type="radio" name="gender" value="Male" id="male">Male
+                        <div class="dropdown col-sm-2">
+                                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Gender Preference
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <a class="dropdown-item" id="female">Female</a>
+                                  <a class="dropdown-item" id="male">Male</a>
+                                  
+                                </div>
+                            </div>
                         </div>
+                              
+                              <br>
+                              <br>
                         <!--Row for days user is leaving-->
                         <div class="row">
-                            <p class="col-sm-2">I'm leaving in:</p>
-                            <input type="radio" name="date" value="One Day" id="one-day">One Day
-                            <br>
-                            <input type="radio" name="date" value="Two Days" id="two-days">Two Days
-                            <br>
-                            <input type="radio" name="date" value="Three Days" id="three-days">Three Days
-                            <br>
-                            <input type="radio" name="date" value="Four Days" id="four-days">Four Days
-                            <br>
-                            <input type="radio" name="date" value="Five Days" id="five-days">Five Days
-                        </div>
+                        <div class="dropdown col-sm-2">
+                                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  I'm Leaving in
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <a class="dropdown-item" href="#" id="one-day">One Day</a>
+                                  <a class="dropdown-item" href="#" id="two-days">Two Days</a>
+                                  <a class="dropdown-item" href="#" id="three days">Three Days</a>
+                                  <a class="dropdown-item" href="#" id="four days">Four Days</a>
+                                  <a class="dropdown-item" href="#" id="five days">Five Days</a>
+                                </div>
+                              </div>
+                              </div>
                         <!--Submit button-->
                         <button class="btn btn-primary float-right" id="submit" type="submit">Submit</button>
                     </div>
