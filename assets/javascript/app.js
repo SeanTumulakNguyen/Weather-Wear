@@ -1,6 +1,8 @@
+// divs for posting the weather and clothing suggestions
 let weatherView = document.getElementById('weather-view')
 let clothingView = document.getElementById('clothing-view')
 
+// submitBtn to pull values of gender, zipcode, and dateTravel inputs
 document.getElementById('submit').onclick = function() {
     let genderInput = document.getElementsByName('gender').value
     let zipCodeInput = document.getElementById('zipcode-input').value
@@ -9,11 +11,14 @@ document.getElementById('submit').onclick = function() {
     console.log('Gender Chosen: ' + genderInput)
     console.log('Zipcode Typed: ' + zipCodeInput)
     console.log('Date Value Chosen: ' + dateTravel)
+
+    document.getElementById('zipcode-input').value = ''
+    
 }
 
 let temp
 let precipChance
-let precipType // this is from openweatherapi on type of precip. rain or snow?
+let precipType
 
 let clothesfromTemp = function () {
     if (temp >= 70) {
@@ -37,21 +42,22 @@ let accessoriesrfromPrecip = function () {
     } else {
         console.log('We may be freezing')
     }
+}
 
 //************************************** Nick's Open Weather API******************************** */
 
 //When the submit button is clicked - get the zip code value and call Open Weather Search API
-document.getElementById("submit").onclick = function() {
-    event.preventDefault();
+// document.getElementById("submit").onclick = function() {
+//     event.preventDefault();
 
-    console.log("Submit Button Clicked - Zip Code Obtained!")
+//     console.log("Submit Button Clicked - Zip Code Obtained!")
 
-    var zipInput = document.getElementById("zipcode-input").value;
+//     var zipInput = document.getElementById("zipcode-input").value;
     
-    //previousSearches.push(zipInput) - we can add a firebase and display recent searches!?!?!?
+//     //previousSearches.push(zipInput) - we can add a firebase and display recent searches!?!?!?
     
-    getWeather(zipInput);
-}
+//     getWeather(zipInput);
+// }
 
 //Call API and search for requested giphy
 function getWeather(zipcode) {
@@ -76,7 +82,7 @@ function displayWeather(response) {
     console.log(response)
 
     document.getElementById("weather-view").empty;
-    
+
     //Apending weather information to the HTML
     //If Day 1 is selected...
     if(value === 1){
@@ -87,7 +93,7 @@ function displayWeather(response) {
         console.log(dayOne.weather[0].id)
 
 
-
+    }
     //If Day 2 is selected...
     else if(value === 1){
         var dayTwo = response.list[13]
