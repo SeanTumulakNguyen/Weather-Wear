@@ -6,63 +6,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Weather Wear</title>
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!--JQuery-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+  
 </head>
 
 <body>
     <div class="container">
-
+        <!--Jumbotron-->
         <div class="jumbotron">
-            <h1 class="text-center">Weather Wear</h1>
+            <h1 class="text-center">Weather Wear Try</h1>
         </div>
-
         <div class="row">
             <div class="col-lg-12">
                 <div class="card card-default">
                     <div class="card-body">
+                        <!--Zipcode Form/Row-->
                         <form role="form">
                             <div class="form-group row">
                                 <label for="zipcode" class="col-sm-2">Zipcode:</label>
-                                <input class="form-control col-sm-8" id="zipcode-input" type="number"></label>
+                                <input class="form-control col-sm-4" id="zipcode-input" type="number"></label>
                             </div>
                         </form>
 
+                        <!--Gender Preference Row-->
                         <div class="row">
-                            <p class="col-sm-2">Gender Preference:</p>
-                            <input type="radio" name="gender" value="Female">Female
-                            <br>
-                            <input type="radio" name="gender" value="Male">Male
+                            <!--<div class="dropdown col-sm-2">
+                                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Gender Preference
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <a class="dropdown-item" href="#">Female</a>
+                                  <a class="dropdown-item" href="#">Male</a>
+                                  
+                                </div>
+                            </div>-->
+                            <div class="form-group">
+                                <label for="gender-preference" id="gender">Gender Preference:</label>
+                                <select class="form-control" id="gender-form">
+                                    <option value="1" id="female">Female</option>
+                                    <option value="2" id="male">Male</option>
+                                </select>
+                            </div>
                         </div>
 
+                        <br>
+
+                        <!--Row for days user is leaving-->
                         <div class="row">
-                            <p class="col-sm-2">I'm leaving in:</p>
-                            <input type="radio" name="date" value="One Day">One Day
-                            <br>
-                            <input type="radio" name="date" value="Two Days">Two Days
-                            <br>
-                            <input type="radio" name="date" value="Three Days">Three Days
-                            <br>
-                            <input type="radio" name="date" value="Four Days">Four Days
-                            <br>
-                            <input type="radio" name="date" value="Five Days">Five Days
+                            <!--<div class="dropdown col-sm-2">
+                                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  I'm Leaving in
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <a class="dropdown-item" href="#" id="one-day">One Day</a>
+                                  <a class="dropdown-item" href="#" id="three days">Three Days</a>
+                                  <a class="dropdown-item" href="#" id="four days">Four Days</a>
+                                  <a class="dropdown-item" href="#" id="five days">Five Days</a>
+                                </div>
+                              </div> -->
+                            <div class="form-group">
+                                <label for="leave" id="days-leave">I'm leaving in:</label>
+                                <select class="form-control" id="days-form">
+                                    <option value="1" id="one-day">One Day</option>
+                                    <option value="2" id="two-days">Two Days</option>
+                                    <option value="3" id="three-days">Three Days</option>
+                                    <option value="4" id="four-days">Four Days</option>
+                                    <option value="5" id="five-days">Five Days</option>
+                                </select>
+                            </div>
                         </div>
+
+                        <!--Submit button-->
                         <button class="btn btn-primary float-right" id="submit" type="submit">Submit</button>
                     </div>
                 </div>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-10">
+                        <div class="card mb-6 border border-primary">
+                            <div class="card-header p-3 mb-2 bg-primary text-white">Weather Forecast</div>
+                            <div class="card-body">
+                                <table class="table table-sm table-hover" id='weather-chart'>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Temperature</th>
+                                            <th scope="col">Conditions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
 
+            <!--Divs for dumping Weather, Clothing-->
             <div id="weather-view"></div>
 
             <div id="clothing-view"></div>
+
         </div>
 
     </div>
 
     <script src="./assets/javascript/app.js"></script>
+    <script src="./assets/javascript/googleajax.js"></script>
 </body>
 
 </html>
