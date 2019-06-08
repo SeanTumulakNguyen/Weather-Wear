@@ -2,24 +2,27 @@
 let weatherView = document.getElementById('weather-view')
 let clothingView = document.getElementById('clothing-view')
 
+//Global Variable
+var dateInputValue ;
+var genderInputValue;
+
 // submitBtn to pull values of gender, zipcode, and dateTravel inputs
 document.getElementById('submit').onclick = function() {
     let genderInput = document.getElementById('gender-form').value
     var zipInput = document.getElementById("zipcode-input").value;
     let dateTravel = document.getElementById('days-form').value
 
+    genderInputValue = genderInput;
+    dateInputValue = dateTravel;
+
     console.log('Gender Chosen: ' + genderInput)
     console.log('Zipcode Typed: ' + zipInput)
     console.log('Date Value Chosen: ' + dateTravel)
 
     document.getElementById('zipcode-input').value = ''
-    // getWeather(zipInput)
+    getWeather(zipInput)
 
 }
-
-let temp
-let precipChance
-let precipType
 
 let clothesfromTemp = function () {
     if (temp >= 70) {
@@ -49,7 +52,7 @@ let accessoriesrfromPrecip = function () {
 //Call API and search for requested giphy
 function getWeather(zipcode) {
     console.log("Open Weather API Search Enabled! Yeet!")
-    console.log(zipcode)
+    console.log("getWeather Function Input: " + zipcode)
 
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcode + "&appid=37857072468d87a5127698015d17b9e0"
     
@@ -64,6 +67,9 @@ function getWeather(zipcode) {
 
 //Display weather information
 function displayWeather(response) {
+
+    console.log("Nick's Date Input Value " + dateInputValue)
+
     console.log("Display Weather Function Enabled")
     console.log("This is the response (below)")
     console.log(response)
@@ -72,7 +78,7 @@ function displayWeather(response) {
 
     //Apending weather information to the HTML
     //If Day 1 is selected...
-    if(value === 1){
+    if(dateInputValue === 1){
         var dayOne = response.list[5]
 
         console.log(dayOne.main.temp)
@@ -98,25 +104,25 @@ function displayWeather(response) {
     }
 
     //If Day 2 is selected...
-    else if(value === 1){
+    else if(dateInputValue === 2){
         var dayTwo = response.list[13]
 
     }
 
     //If Day 3 is selected...
-    else if(value === 2){
+    else if(dateInputValue === 3){
         var dayThree = response.list[21]
 
     }
 
     //if Day 4 is selected...
-    else if(value === 3){
+    else if(dateInputValue === 4){
         var dayFour = response.list[29]
 
     }
 
     //if Day 5 is selected...
-    else if(value === 4){
+    else if(dateInputValue === 5){
         var dayFive = response.list[37]
 
     }
