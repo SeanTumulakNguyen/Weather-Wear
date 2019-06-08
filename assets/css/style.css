@@ -1,0 +1,24 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Martel Sans', serif;
+  font-size: 18px;
+  line-height: 150%;
+}
+
+.jumbotron{
+visibility: visable;
+font-family: 'Martel Sans';
+font-size: 150%;
+ font-color: white;
+ background: blue;
+}
+
+
+h1{
+visibility: visible;
+}
+
+
+
+
