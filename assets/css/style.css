@@ -20,8 +20,7 @@ body {
 .jumbotron {
   background: none;
   font-family: 'Martel Sans';
-  font-size: 150%;
-  
+  font-size: larger;
 }
 
 
@@ -30,11 +29,11 @@ h1 {
 }
 
 /* input card*/
-.float-left{
+.float-left {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.40);
 }
 
 /* weather forcast card*/
-.float-right{
+.float-right {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.40);
 }
