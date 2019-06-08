@@ -5,6 +5,8 @@ let clothingView = document.getElementById('clothing-view')
 //Global Variable
 var dateInputValue ;
 var genderInputValue;
+var temperature;
+var weatherConditions;
 
 // submitBtn to pull values of gender, zipcode, and dateTravel inputs
 document.getElementById('submit').onclick = function() {
@@ -78,12 +80,12 @@ function displayWeather(response) {
 
     //Apending weather information to the HTML
     //If Day 1 is selected...
-    if(dateInputValue === 1){
+    if(dateInputValue == 1){
         var dayOne = response.list[5]
 
-        console.log(dayOne.main.temp)
-        console.log(dayOne.weather[0].description)
-        console.log(dayOne.weather[0].id)
+        console.log("Day 1 Temp: " + dayOne.main.temp)
+        console.log("Day 1 Description: " + dayOne.weather[0].description)
+        console.log("Day 1 Cond. ID: " + dayOne.weather[0].id)
 
         //create new table row
         var newRow = document.createElement("tr");
@@ -99,6 +101,12 @@ function displayWeather(response) {
         //append data cells to row
         newRow.appendChild(newDataTemp);
         newRow.appendChild(newDataCond);
+        //append newRow to HTML
+        let weatherDisplay = document.getElementById('weather-chart')
+        weatherDisplay.appendChild(newRow);
+
+        temperature = temp;
+        weatherConditions = cond;
 
         //this.list[5]
     }
