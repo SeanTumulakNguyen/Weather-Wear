@@ -1,6 +1,4 @@
 body {
-<<<<<<< Updated upstream
-=======
   /*image background*/
   background-image: url("mountaintop-landscape-and-clouds-in-nepal.jpg");
   height: 500px;
@@ -8,32 +6,11 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
->>>>>>> Stashed changes
   padding: 0;
   margin: 0;
   font-family: 'Martel Sans', serif;
   font-size: 18px;
   line-height: 150%;
-<<<<<<< Updated upstream
-}
-
-.jumbotron{
-visibility: visable;
-font-family: 'Martel Sans';
-font-size: 150%;
- font-color: white;
- background: blue;
-}
-
-
-h1{
-visibility: visible;
-}
-
-
-
-
-=======
 
 }
 
@@ -58,4 +35,3 @@ h1 {
 .float-right{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.40);
 }
->>>>>>> Stashed changes
