@@ -14,7 +14,10 @@ var config = {
   // Create a variable to reference the database
   var database = firebase.database();
 
-    var queryURL = "https://www.googleapis.com/customsearch/v1?key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg";
+  //searchTerm will use the data sent back from the weather api and search for that locations fashion 
+  // we are using cold weather, mild weather, and hot weather ranges
+  var searchTerm = ""; //needs to take data from nick and covert to a search query
+  var queryURL = "https://www.googleapis.com/customsearch/v1?q=" + searchterm + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg";
 
     // Creating an AJAX call for the specific movie button being clicked
     $.ajax({
@@ -22,5 +25,9 @@ var config = {
       method: "GET"
     }).then(function(response) {
         console.log(response)})
+
+        // pull back 4 images for each days forecast
+        // make the images clickable and link to the link back in the JSON
+
         
     
