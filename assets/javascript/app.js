@@ -56,7 +56,7 @@ function getWeather(zipcode) {
     console.log("Open Weather API Search Enabled! Yeet!")
     console.log("getWeather Function Input: " + zipcode)
 
-    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcode + "&appid=37857072468d87a5127698015d17b9e0"
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcode + "&units=imperial&appid=37857072468d87a5127698015d17b9e0"
     
     $.ajax({
         url: queryURL,
