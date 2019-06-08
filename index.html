@@ -21,15 +21,23 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
     </script>
 
     <!--JQuery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js"></script>
+
+
+
 </head>
 
 <body>
+
     <div class="container">
         <!--Jumbotron-->
         <div class="jumbotron">
@@ -37,18 +45,33 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
+
                 <div class="card card-default float-left" style="width:40%">
+
                     <div class="card-body">
                         <!--Zipcode Form/Row-->
                         <form role="form">
                             <div class="form-group row">
+
                                 <label for="zipcode" class="col-sm-4">Zipcode:</label>
+
                                 <input class="form-control col-sm-4" id="zipcode-input" type="number"></label>
                             </div>
                         </form>
 
                         <!--Gender Preference Row-->
                         <div class="row">
+
+                            <!--<div class="dropdown col-sm-2">
+                                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Gender Preference
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <a class="dropdown-item" href="#">Female</a>
+                                  <a class="dropdown-item" href="#">Male</a>
+                                  
+                                </div>
+                            </div>-->
 
                             <div class="form-group">
                                 <label for="gender-preference" class="col-sm-12" id="gender">Gender Preference:</label>
@@ -63,6 +86,18 @@
 
                         <!--Row for days user is leaving-->
                         <div class="row">
+
+                            <!--<div class="dropdown col-sm-2">
+                                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  I'm Leaving in
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <a class="dropdown-item" href="#" id="one-day">One Day</a>
+                                  <a class="dropdown-item" href="#" id="three days">Three Days</a>
+                                  <a class="dropdown-item" href="#" id="four days">Four Days</a>
+                                  <a class="dropdown-item" href="#" id="five days">Five Days</a>
+                                </div>
+                              </div> -->
 
                             <div class="form-group">
                                 <label for="leave" id="days-leave" class="col-sm-12">I'm leaving in:</label>
@@ -81,12 +116,16 @@
                     </div>
                 </div>
 
+                <br>
+                <br>
                 <div class="row">
+
                     <!--<div class="col-md-1">
                     </div>-->
                     <div class="col-lg-12">
                         <div class="card lg-12 border border-info float-right" style="width:100%">
                             <div class="card-header p-3 mb-2 bg-info text-white">Weather Forecast</div>
+
                             <div class="card-body">
                                 <table class="table table-sm table-hover" id='weather-chart'>
                                     <thead>
@@ -100,6 +139,7 @@
                                 </table>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -127,3 +167,4 @@
 </body>
 
 </html>
+
