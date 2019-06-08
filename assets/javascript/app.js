@@ -3,13 +3,14 @@ let weatherView = document.getElementById('weather-view')
 let clothingView = document.getElementById('clothing-view')
 
 //Global Variable
-var dateInputValue ;
+var dateInputValue; 
 var genderInputValue;
 var temperature;
 var weatherConditions;
+var weatherID;
 
 // submitBtn to pull values of gender, zipcode, and dateTravel inputs
-document.getElementById('submit').onclick = function() {
+document.getElementById('submit').onclick = function () {
     let genderInput = document.getElementById('gender-form').value
     var zipInput = document.getElementById("zipcode-input").value;
     let dateTravel = document.getElementById('days-form').value
@@ -57,12 +58,12 @@ function getWeather(zipcode) {
     console.log("getWeather Function Input: " + zipcode)
 
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcode + "&units=imperial&appid=37857072468d87a5127698015d17b9e0"
-    
+
     $.ajax({
-        url: queryURL,
-        method: "GET"
+            url: queryURL,
+            method: "GET"
         })
-    .done(function(response){
+        .done(function (response) {
             displayWeather(response);
         })
 }
@@ -80,7 +81,7 @@ function displayWeather(response) {
 
     //Apending weather information to the HTML
     //If Day 1 is selected...
-    if(dateInputValue == 1){
+    if (dateInputValue == 1) {
         var dayOne = response.list[5]
         console.log("Day 1 Temp: " + dayOne.main.temp)
         console.log("Day 1 Description: " + dayOne.weather[0].description)
@@ -88,47 +89,51 @@ function displayWeather(response) {
         addWeatherView(dayOne)
     }
     //If Day 2 is selected...
-    else if(dateInputValue == 2){
+    else if (dateInputValue == 2) {
         var dayTwo = response.list[13]
         addWeatherView(dayTwo)
     }
     //If Day 3 is selected...
-    else if(dateInputValue == 3){
+    else if (dateInputValue == 3) {
         var dayThree = response.list[21]
         addWeatherView(dayThree)
     }
     //if Day 4 is selected...
-    else if(dateInputValue == 4){
+    else if (dateInputValue == 4) {
         var dayFour = response.list[29]
         addWeatherView(dayFour)
     }
     //if Day 5 is selected...
-    else if(dateInputValue == 5){
-       var dayFive = response.list[37]
+    else if (dateInputValue == 5) {
+        var dayFive = response.list[37]
         addWeatherView(dayFive)
     }
 };
 
+let addWeatherView = function (day) {
+    //create new table row
+    var newRow = document.createElement("tr");
+    //create new data cells in row
+    var newDataTemp = document.createElement("td");
+    var newDataCond = document.createElement("td");
+    //create variables to append to data cells
+    var temp = document.createTextNode(day.main.temp);
+    var cond = document.createTextNode(day.weather[0].description);
+    //append variables to data cells
+    newDataTemp.appendChild(temp);
+    newDataCond.appendChild(cond);
+    //append data cells to row
+    newRow.appendChild(newDataTemp);
+    newRow.appendChild(newDataCond);
+    //append newRow to HTML
+    let weatherDisplay = document.getElementById('weather-chart')
+    weatherDisplay.appendChild(newRow);
 
-let addWeatherView = function(day) {
-//create new table row
-var newRow = document.createElement("tr");
-//create new data cells in row
-var newDataTemp = document.createElement("td");
-var newDataCond = document.createElement("td");
-//create variables to append to data cells
-var temp = document.createTextNode(day.main.temp);
-var cond = document.createTextNode(day.weather[0].description);
-//append variables to data cells
-newDataTemp.appendChild(temp);
-newDataCond.appendChild(cond);
-//append data cells to row
-newRow.appendChild(newDataTemp);
-newRow.appendChild(newDataCond);
-//append newRow to HTML
-let weatherDisplay = document.getElementById('weather-chart')
-weatherDisplay.appendChild(newRow);
+    //Get weather ID to change global variable
+    var iD = day.weather[0].id;
+    console.log("Weather ID for Sean: "+ iD);
 
-temperature = temp;
-weatherConditions = cond;
+    weatherID = iD;
+    temperature = temp;
+    weatherConditions = cond;
 }
