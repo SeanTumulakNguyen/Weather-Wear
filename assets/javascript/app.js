@@ -27,11 +27,11 @@ document.getElementById('submit').onclick = function() {
 }
 
 let clothesfromTemp = function () {
-    if (temp >= 75) {
+    if (temperature >= 75) {
         console.log('Is is 70 degrees or more')
-    } else if (temp < 75 && temp >= 55) {
+    } else if (temperature < 75 && temperature >= 55) {
         console.log('It is between 50 and 70 degrees')
-    } else if (temp < 55) {
+    } else if (temperature < 55) {
         console.log('Is it below 50 degrees')
     }
 }
