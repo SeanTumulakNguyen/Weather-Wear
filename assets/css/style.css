@@ -1,6 +1,6 @@
 body {
   /*image background*/
-  background-image: url("mountaintop-landscape-and-clouds-in-nepal.jpg");
+  background-image: url('../images/mountaintop-landscape-and-clouds-in-nepal.jpg');
   height: 500px;
   background-position: center;
   background-repeat: no-repeat;
