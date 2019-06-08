@@ -1,19 +1,25 @@
+// divs for posting the weather and clothing suggestions
 let weatherView = document.getElementById('weather-view')
 let clothingView = document.getElementById('clothing-view')
 
+// submitBtn to pull values of gender, zipcode, and dateTravel inputs
 document.getElementById('submit').onclick = function() {
-    let genderInput = document.getElementsByName('gender').value
-    let zipCodeInput = document.getElementById('zipcode-input').value
-    let dateTravel = document.getElementsByName('date').value
+    let genderInput = document.getElementById('gender-form').value
+    var zipInput = document.getElementById("zipcode-input").value;
+    let dateTravel = document.getElementById('days-form').value
 
     console.log('Gender Chosen: ' + genderInput)
-    console.log('Zipcode Typed: ' + zipCodeInput)
+    console.log('Zipcode Typed: ' + zipInput)
     console.log('Date Value Chosen: ' + dateTravel)
+
+    document.getElementById('zipcode-input').value = ''
+    // getWeather(zipInput)
+
 }
 
 let temp
 let precipChance
-let precipType // this is from openweatherapi on type of precip. rain or snow?
+let precipType
 
 let clothesfromTemp = function () {
     if (temp >= 70) {
@@ -40,19 +46,6 @@ let accessoriesrfromPrecip = function () {
 }
 //************************************** Nick's Open Weather API******************************** */
 
-//When the submit button is clicked - get the zip code value and call Open Weather Search API
-document.getElementById("submit").onclick = function() {
-    event.preventDefault();
-
-    console.log("Submit Button Clicked - Zip Code Obtained!")
-
-    var zipInput = document.getElementById("zipcode-input").value;
-    
-    //previousSearches.push(zipInput) - we can add a firebase and display recent searches!?!?!?
-    
-    getWeather(zipInput);
-}
-
 //Call API and search for requested giphy
 function getWeather(zipcode) {
     console.log("Open Weather API Search Enabled! Yeet!")
@@ -76,7 +69,7 @@ function displayWeather(response) {
     console.log(response)
 
     document.getElementById("weather-view").empty;
-    
+
     //Apending weather information to the HTML
     //If Day 1 is selected...
     if(value === 1){
