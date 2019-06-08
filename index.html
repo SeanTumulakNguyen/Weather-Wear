@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,6 +28,11 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 
 
+
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js"></script>
+
+
 </head>
 
 <body>
@@ -41,18 +44,21 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
+
                 <div class="card card-default" style="width:50%">
                     <div class="card-body">
                         <!--Zipcode Form/Row-->
                         <form role="form">
                             <div class="form-group row">
                                 <label for="zipcode" class="row-sm-2">Zipcode:</label>
+
                                 <input class="form-control col-sm-4" id="zipcode-input" type="number"></label>
                             </div>
                         </form>
 
                         <!--Gender Preference Row-->
                         <div class="row">
+
                             <!--<div class="dropdown col-sm-2">
                                 <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   Gender Preference
@@ -63,6 +69,7 @@
                                   
                                 </div>
                             </div>-->
+
                             <div class="form-group">
                                 <label for="gender-preference" id="gender">Gender Preference:</label>
                                 <select class="form-control" id="gender-form">
@@ -76,6 +83,7 @@
 
                         <!--Row for days user is leaving-->
                         <div class="row">
+
                             <!--<div class="dropdown col-sm-2">
                                 <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   I'm Leaving in
@@ -87,6 +95,7 @@
                                   <a class="dropdown-item" href="#" id="five days">Five Days</a>
                                 </div>
                               </div> -->
+
                             <div class="form-group">
                                 <label for="leave" id="days-leave">I'm leaving in:</label>
                                 <select class="form-control" id="days-form">
@@ -103,6 +112,7 @@
                         <button class="btn btn-primary float-right" id="submit" type="submit">Submit</button>
                     </div>
                 </div>
+
                 <br>
                 <br>
                 <div class="row">
@@ -110,6 +120,7 @@
                     </div>
                     <div class="col-md-10">
                         <div class="card mb-6 border border-primary">
+
                             <div class="card-header p-3 mb-2 bg-primary text-white">Weather Forecast</div>
                             <div class="card-body">
                                 <table class="table table-sm table-hover" id='weather-chart'>
@@ -131,10 +142,14 @@
 
             </div>
 
-            <!--Divs for dumping Weather, Clothing-->
-            <div id="weather-view"></div>
+            <!--Divs for dumping Weather, Clothing
+            <div id="clothing"> hello</div>
+            <div class="row">
+            <div class="col-lg-12">
+                <div class="card card-default">
+                    <div class="card-body">
 
-            <div id="clothing-view"></div>
+            <div id="clothing-view">hi</div>-->
 
         </div>
 
@@ -145,4 +160,4 @@
 </body>
 
 </html>
->>>>>>> Stashed changes
+
