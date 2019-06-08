@@ -18,7 +18,7 @@ var config = {
   // we are using cold weather, mild weather, and hot weather ranges
   var searchTerm = clothesType + genderType; //needs to take data from nick and covert to a search query
   var queryURL = "https://www.googleapis.com/customsearch/v1?q=" + searchterm + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg";
-  let clothingView = document.getElementById('clothing')
+  
 
   // logic to state in the search term the type of weather
   
