@@ -7,6 +7,8 @@ var dateInputValue;
 var genderInputValue;
 var temperature;
 var weatherConditions;
+var clothesChosen;
+var genderChosen;
 
 // submitBtn to pull values of gender, zipcode, and dateTravel inputs
 document.getElementById('submit').onclick = function () {
@@ -136,27 +138,27 @@ let addWeatherView = function (day) {
 
 var clothesType = function () {
     if (temperature >= 75) {
-        clothesType = "warm+weather"
+        clothesChosen = "warm+weather"
     } else if (temperature < 75 && temperature >= 55) {
-        clothesType = "mild+weather"
+        clothesChosen = "mild+weather"
     } else if (temperature < 55) {
-        clothesType = "cold+weather"
+        clothesChosen = "cold+weather"
     }
 }
-console.log(clothesType);
+console.log(clothesChosen);
 
 var genderType = function () {
     if (genderInputValue == 1) {
-        genderType = "for+women"
+        genderChosen = "for+women"
     } else {
-        genderType = "for+men"
+        genderChosen = "for+men"
     }
 }
-console.log(genderType);
-//searchTerm will use the data sent back from the weather api and search for that locations fashion 
+console.log(genderChosen);
+
 // we are using cold weather, mild weather, and hot weather ranges
 function getSearchResults() {
-    var queryURL = "https://www.googleapis.com/customsearch/v1?q=" + clothesType + "+" + genderType + "+" + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
+    var queryURL = "https://www.googleapis.com/customsearch/v1?q=" + clothesChosen + "+" + genderChosen + "+" + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
 
     $.ajax({
             url: queryURL,
@@ -169,8 +171,8 @@ function getSearchResults() {
 
 // pull back 4 images for each days forecast
 
-let clothesDisplay = document.getElementById('clothing')
-clothesDisplay.appendChild();
+//let clothesDisplay = document.getElementById('clothing')
+//clothesDisplay.appendChild();
 
 
 // make the images clickable and link to the link back in the JSON
