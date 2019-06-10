@@ -26,10 +26,11 @@ document.getElementById('submit').onclick = function () {
     document.getElementById('zipcode-input').value = ''
     getWeather(zipInput)
 
-    console.log(temperature)
+    
     genderType()
-    // clothesType()
-
+    console.log('Return value of genderTyper() ' + genderChosen)
+    clothesType()
+    console.log('Return value of clothesType() ' + clothesChosen)
 }
 
 let clothesfromTemp = function () {
@@ -68,8 +69,12 @@ function getWeather(zipcode) {
             url: queryURL,
             method: "GET"
         })
-        .done(function (response) {
+        .then(function (response) {
             displayWeather(response);
+        })
+        .then(function () {
+            console.log(temperature)
+            return temperature
         })
 }
 
@@ -107,12 +112,15 @@ function displayWeather(response) {
     else if (dateInputValue == 4) {
         var dayFour = response.list[29]
         addWeatherView(dayFour)
+
     }
     //if Day 5 is selected...
     else if (dateInputValue == 5) {
         var dayFive = response.list[37]
         addWeatherView(dayFive)
     }
+    console.log('After addWeatherView():' + temperature)
+    return temperature
 };
 
 
@@ -135,8 +143,8 @@ let addWeatherView = function (day) {
     let weatherDisplay = document.getElementById('weather-chart')
     weatherDisplay.appendChild(newRow);
 
-    temperature = day.main.temp;
-    weatherConditions = cond;
+    return temperature = day.main.temp;
+    // weatherConditions = cond;
 }
 // logic to state in the search term the type of weather
 
@@ -146,29 +154,23 @@ var clothesType = function (temperature) {
 
     if (temperature >= 75) {
         clothesChosen = "warm+weather"
-        console.log(clothesChosen)
-        return clothesChosen
     } else if (temperature < 75 && temperature >= 55) {
         clothesChosen = "mild+weather"
-        console.log(clothesChosen)
-        return clothesChosen
     } else if (temperature < 55) {
         clothesChosen = "cold+weather"
-        console.log(clothesChosen)
-        return clothesChosen
     }
+    return clothesChosen
 }
 
 var genderType = function () {
     if (genderInputValue == 1) {
         genderChosen = "for+women"
-        console.log('If women are chosen: ' + genderChosen)
-        return genderChosen
+        console.log('If women are chosen: ' + genderChosen)   
     } else {
         genderChosen = "for+men"
         console.log('If men are chosen: ' + genderChosen)
-        return genderChosen
     }
+    return genderChosen
 }
 
 // we are using cold weather, mild weather, and hot weather ranges
