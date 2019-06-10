@@ -136,21 +136,23 @@ weatherConditions = cond;
   
 let clothesType = function () {
     if (temperature >= 75) {
-        clothesType = "warm+weather"
+      clothesType = "warm+weather"
     } else if (temperature < 75 && temperature >= 55) {
       clothesType = "mild+weather"
     } else if (temperature < 55) {
       clothesType = "cold+weather"
     }
 }
+console.log (clothesType);
 
-let genderType = function () {
-  if (genderInputValue = 1) {
+let genderType = function() {
+  if (genderInputValue === 1) {
       clothesType = "for+women"
   } else {
     clothesType = "for+men"
   }
 }
+console.log (genderType);
   //searchTerm will use the data sent back from the weather api and search for that locations fashion 
   // we are using cold weather, mild weather, and hot weather ranges
   var searchTerm = "clothesType+genderType"; //needs to take data from nick and covert to a search query
