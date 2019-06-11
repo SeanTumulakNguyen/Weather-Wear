@@ -222,10 +222,10 @@ function getSearchResults() {
             console.log(response)
             // pull back 4 images for each days forecast
             //I know this is not the way to write this, just jotting down to correct tomorrow:
-            $("#1").html("<img src=" + response.items[0].image.thumbnailLink + ">");
-            $("#2").html("<img src=" + response.items[1].image.thumbnailLink + ">");
-            $("#3").html("<img src=" + response.items[3].image.thumbnailLink + ">");            
-            $("#4").html("<img src=" + response.items[4].image.thumbnailLink + ">");            
+            $("#1").html("<a href=" + response.items[0].image.contextLink + "><img src=" + response.items[0].image.thumbnailLink + "></a>");
+            $("#2").html("<a href=" + response.items[1].image.contextLink + "><img src=" + response.items[1].image.thumbnailLink + "></a>");
+            $("#3").html("<a href=" + response.items[2].image.contextLink + "><img src=" + response.items[2].image.thumbnailLink + "></a>");
+            $("#4").html("<a href=" + response.items[3].image.contextLink + "><img src=" + response.items[3].image.thumbnailLink + "></a>");
             //let clothesDisplay = document.getElementById('clothing')
             //clothesDisplay.appendChild();
             // make the images clickable and link to the link back in the JSON
