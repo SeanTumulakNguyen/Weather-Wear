@@ -24,13 +24,36 @@ document.getElementById('submit').onclick = function () {
     console.log('Date Value Chosen: ' + dateTravel)
 
     document.getElementById('zipcode-input').value = ''
-    getWeather(zipInput)
+    getWeather(zipInput, getGenderAndClothes);
+}
 
-    
+function getGenderAndClothes() {
+    console.log("Temperature in submit", temperature);
+
     genderType()
     console.log('Return value of genderTyper() ' + genderChosen)
-    clothesType()
+    clothesType(temperature)
     console.log('Return value of clothesType() ' + clothesChosen)
+}
+
+//************************************** Nick's Open Weather API******************************** */
+
+//Call API and search for requested giphy
+function getWeather(zipcode, callback) {
+    console.log("Open Weather API Search Enabled! Yeet!")
+    console.log("getWeather Function Input: " + zipcode)
+    
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcode + "&units=imperial&appid=37857072468d87a5127698015d17b9e0"
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+    .then(function (response) {
+        displayWeather(response);
+        callback();
+        console.log("Temperature after Ajax call: ", temperature)
+    });
 }
 
 let clothesfromTemp = function () {
@@ -55,27 +78,6 @@ let accessoriesfromPrecip = function () {
     } else {
         console.log('We may be freezing')
     }
-}
-//************************************** Nick's Open Weather API******************************** */
-
-//Call API and search for requested giphy
-function getWeather(zipcode) {
-    console.log("Open Weather API Search Enabled! Yeet!")
-    console.log("getWeather Function Input: " + zipcode)
-
-    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcode + "&units=imperial&appid=37857072468d87a5127698015d17b9e0"
-
-    $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-        .then(function (response) {
-            displayWeather(response);
-        })
-        .then(function () {
-            console.log(temperature)
-            return temperature
-        })
 }
 
 //Display weather information
@@ -143,7 +145,7 @@ let addWeatherView = function (day) {
     let weatherDisplay = document.getElementById('weather-chart')
     weatherDisplay.appendChild(newRow);
 
-    return temperature = day.main.temp;
+    temperature = day.main.temp;
     // weatherConditions = cond;
 }
 // logic to state in the search term the type of weather
@@ -171,7 +173,7 @@ var clothesType = function (temperature) {
 var genderType = function () {
     if (genderInputValue == 1) {
         genderChosen = "for+women"
-        console.log('If women are chosen: ' + genderChosen)   
+        console.log('If women are chosen: ' + genderChosen)
     } else {
         genderChosen = "for+men"
         console.log('If men are chosen: ' + genderChosen)
@@ -181,7 +183,7 @@ var genderType = function () {
 
 // we are using cold weather, mild weather, and hot weather ranges
 function getSearchResults() {
-//    var queryURL = "https://www.googleapis.com/customsearch/v1?q=" + clothesChosen + "+" + genderChosen + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
+    //    var queryURL = "https://www.googleapis.com/customsearch/v1?q=" + clothesChosen + "+" + genderChosen + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
     var queryURL = "https://www.googleapis.com/customsearch/v1?q=warm+weather+clothes" + genderChosen + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
 
     $.ajax({
@@ -192,7 +194,7 @@ function getSearchResults() {
             console.log(response)
             // pull back 4 images for each days forecast
             //I know this is not the way to write this, just jotting down to correct tomorrow:
-            $("#clothing").html("<img scr>", this.items.0.image.link);
+            $("#clothing").html("<img scr>", this.items[0].image.link);
             //let clothesDisplay = document.getElementById('clothing')
             //clothesDisplay.appendChild();
             // make the images clickable and link to the link back in the JSON
