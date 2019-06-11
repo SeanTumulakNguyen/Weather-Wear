@@ -98,6 +98,7 @@ function displayWeather(response) {
         console.log("Day 1 Temp: " + dayOne.main.temp)
         console.log("Day 1 Description: " + dayOne.weather[0].description)
         console.log("Day 1 Cond. ID: " + dayOne.weather[0].id)
+
         addWeatherView(dayOne)
     }
     //If Day 2 is selected...
@@ -130,29 +131,46 @@ let addWeatherView = function (day) {
     //create new table row
     var newRow = document.createElement("tr");
     //create new data cells in row
+    var newDataDate = document.createElement("td");
     var newDataTemp = document.createElement("td");
     var newDataCond = document.createElement("td");
+
+    //Get the date of the forecast
+    var utc = day.dt;
+    var newDate = Date(utc);
+    var d = moment(newDate).format("MM-DD-YYYY");
+
     //create variables to append to data cells
+    var forecastDate = document.createTextNode(d);
     var temp = document.createTextNode(day.main.temp);
     var cond = document.createTextNode(day.weather[0].description);
     //append variables to data cells
+    newDataDate.appendChild(forecastDate);
     newDataTemp.appendChild(temp);
     newDataCond.appendChild(cond);
     //append data cells to row
+    newRow.appendChild(forecastDate);
     newRow.appendChild(newDataTemp);
     newRow.appendChild(newDataCond);
     //append newRow to HTML
     let weatherDisplay = document.getElementById('weather-chart')
     weatherDisplay.appendChild(newRow);
 
-    temperature = day.main.temp;
-    // weatherConditions = cond;
+    //Get weather ID to change global variable
+    var iD = day.weather[0].id;
+    console.log("Weather ID for Sean: " + iD);
+
+    weatherID = iD;
+    temperature = temp;
+    weatherConditions = cond;
 }
+
 // logic to state in the search term the type of weather
 
 var clothesType = function (temperature) {
 
     // console.log(temperature)
+
 
     if (temperature >= 75) {
         clothesChosen = "warm+weather"
@@ -166,6 +184,7 @@ var clothesType = function (temperature) {
         clothesChosen = "cold+weather"
         console.log(clothesChosen)
         return clothesChosen
+
     }
     return clothesChosen
 }
