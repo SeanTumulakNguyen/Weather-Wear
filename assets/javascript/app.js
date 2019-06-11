@@ -183,16 +183,14 @@ function getSearchResults() {
         })
         .then(function (response) {
             console.log(response)
+            // pull back 4 images for each days forecast
+            //I know this is not the way to write this, just jotting down to correct tomorrow:
+            $("#clothing").html("<img scr>", this.items.0.image.link);
+            //let clothesDisplay = document.getElementById('clothing')
+            //clothesDisplay.appendChild();
+            // make the images clickable and link to the link back in the JSON
         })
 };
 
 
 
-// pull back 4 images for each days forecast
-
-
-//let clothesDisplay = document.getElementById('clothing')
-//clothesDisplay.appendChild();
-
-
-// make the images clickable and link to the link back in the JSON
