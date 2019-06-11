@@ -20,14 +20,10 @@ body {
 .jumbotron {
   background: none;
   font-family: 'Martel Sans';
-  font-size: larger;
+  font-size: xx-large;
+  line-height: 45px;
   color: white;
   font: bold;
-}
-
-
-h1 {
-  visibility: visible;
 }
 
 /* input card*/
@@ -35,7 +31,17 @@ h1 {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.40);
 }
 
+/* removes shadow from button*/
+.button{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 0px white(253, 251, 251, 0.726);
+}
+
 /* weather forcast card*/
+.float-right {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.40);
+}
+
+/* google api clothing search results card*/
 .float-right {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.40);
 }
