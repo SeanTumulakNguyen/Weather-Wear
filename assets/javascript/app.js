@@ -19,12 +19,16 @@ document.getElementById('submit').onclick = function () {
     genderInputValue = genderInput;
     dateInputValue = dateTravel;
 
-    console.log('Gender Chosen: ' + genderInput)
+    console.log('Gender Input Integer: ' + genderInput)
     console.log('Zipcode Typed: ' + zipInput)
     console.log('Date Value Chosen: ' + dateTravel)
 
     document.getElementById('zipcode-input').value = ''
     getWeather(zipInput)
+
+    console.log(temperature)
+    genderType()
+    // clothesType()
 
 }
 
@@ -38,7 +42,7 @@ let clothesfromTemp = function () {
     }
 }
 
-let accessoriesrfromPrecip = function () {
+let accessoriesfromPrecip = function () {
     if (precipChance >= 60 && precipType === 'snow') {
         console.log('There is a great chance it will snow')
     } else if (precipChance >= 60 && precipType === 'rain') {
@@ -131,34 +135,45 @@ let addWeatherView = function (day) {
     let weatherDisplay = document.getElementById('weather-chart')
     weatherDisplay.appendChild(newRow);
 
-    temperature = temp;
+    temperature = day.main.temp;
     weatherConditions = cond;
 }
 // logic to state in the search term the type of weather
 
-var clothesType = function () {
+var clothesType = function (temperature) {
+
+    // console.log(temperature)
+
     if (temperature >= 75) {
         clothesChosen = "warm+weather"
+        console.log(clothesChosen)
+        return clothesChosen
     } else if (temperature < 75 && temperature >= 55) {
         clothesChosen = "mild+weather"
+        console.log(clothesChosen)
+        return clothesChosen
     } else if (temperature < 55) {
         clothesChosen = "cold+weather"
+        console.log(clothesChosen)
+        return clothesChosen
     }
 }
-console.log(clothesChosen);
 
 var genderType = function () {
     if (genderInputValue == 1) {
         genderChosen = "for+women"
+        console.log('If women are chosen: ' + genderChosen)
+        return genderChosen
     } else {
         genderChosen = "for+men"
+        console.log('If men are chosen: ' + genderChosen)
+        return genderChosen
     }
 }
-console.log(genderChosen);
 
 // we are using cold weather, mild weather, and hot weather ranges
 function getSearchResults() {
-    var queryURL = "https://www.googleapis.com/customsearch/v1?q=" + clothesChosen + "+" + genderChosen + "+" + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
+    var queryURL = "https://www.googleapis.com/customsearch/v1?q=" + clothesChosen + "+" + genderChosen + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
 
     $.ajax({
             url: queryURL,
