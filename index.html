@@ -40,15 +40,16 @@
 
 
 
+
+
 </head>
 
 <body>
 
+    <header>Weather Wear</header>
+
     <div class="container">
-        <!--Jumbotron-->
-        <div class="jumbotron">
-            <h1 class="text-center">Weather Wear</h1>
-        </div>
+
         <div class="row">
             <div class="col-lg-12">
 
@@ -85,7 +86,7 @@
 
                         <br>
 
-                        
+
 
                         <!--days user is leaving-->
                         <form role="form">
@@ -107,7 +108,7 @@
                     </div>
                 </div>
 
-                
+
                 <div class="row">
 
                     <!--Weather Forecast-->
@@ -119,6 +120,7 @@
                                 <table class="table table-sm table-hover" id='weather-chart'>
                                     <thead>
                                         <tr>
+                                            <th scope="col">Date</th>
                                             <th scope="col">Temperature</th>
                                             <th scope="col">Conditions</th>
                                         </tr>
@@ -150,7 +152,7 @@
             </div>
         </div>
 
-        
+
         <br>
         <!--Add Suggested Accesorries-->
         <div class="col-lg-12">
@@ -158,16 +160,28 @@
             <br>
             <div class="card lg-12 border border-info float-right" style="width:100%">
                 <div class="card-header p-3 mb-2 bg-info text-white text-center">Clothing Options</div>
-                <p class="card-text text-center clothing" id="clothing">clothes</P>
-                <p class="card-text text-center clothing" id="google">google</p>
+                
+                <div id="1">
+                    <img src="" alt="">
+                </div>
 
+                <div id="2">
+                    <img src="" alt="">
+                </div>
+
+                <div id="3">
+                    <img src="" alt="">
+                </div>
+
+                <div id="4">
+                    <img src="" alt="">
+                </div>
 
 
             </div>
 
-        </div>
-    </div>
-    <script src="./assets/javascript/app.js"></script>
+            <script src="./assets/javascript/app.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 </body>
 
 </html>
