@@ -29,6 +29,7 @@ document.getElementById('submit').onclick = function () {
     console.log(temperature)
     genderType()
     // clothesType()
+    getSearchResults()
 
 }
 
@@ -157,7 +158,7 @@ var clothesType = function (temperature) {
         console.log(clothesChosen)
         return clothesChosen
     }
-}
+};
 
 var genderType = function () {
     if (genderInputValue == 1) {
@@ -169,11 +170,12 @@ var genderType = function () {
         console.log('If men are chosen: ' + genderChosen)
         return genderChosen
     }
-}
+};
 
 // we are using cold weather, mild weather, and hot weather ranges
 function getSearchResults() {
-    var queryURL = "https://www.googleapis.com/customsearch/v1?q=" + clothesChosen + "+" + genderChosen + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
+//    var queryURL = "https://www.googleapis.com/customsearch/v1?q=" + clothesChosen + "+" + genderChosen + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
+    var queryURL = "https://www.googleapis.com/customsearch/v1?q=warm+weather+clothes" + genderChosen + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
 
     $.ajax({
             url: queryURL,
@@ -184,7 +186,10 @@ function getSearchResults() {
         })
 };
 
+
+
 // pull back 4 images for each days forecast
+
 
 //let clothesDisplay = document.getElementById('clothing')
 //clothesDisplay.appendChild();
