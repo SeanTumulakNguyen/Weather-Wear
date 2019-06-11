@@ -1,7 +1,11 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   /*image background*/
   background-image: url('../images/mountaintop-landscape-and-clouds-in-nepal.jpg');
-  height: 500px;
+  height: 900px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -11,27 +15,26 @@ body {
   font-family: 'Martel Sans', serif;
   font-size: 18px;
   line-height: 150%;
-
 }
 
-.jumbotron {
-  background: none;
-  font-family: 'Martel Sans';
-  font-size: 150%;
-  
-}
-
-
-h1 {
-  visibility: visible;
+header{
+  padding: 60px;
+  text-align: center;
+  color: white;
+  font-size: 90px;
 }
 
 /* input card*/
-.float-left{
+.float-left {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.40);
 }
 
 /* weather forcast card*/
-.float-right{
+.float-right {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.40);
+}
+
+/* google api clothing search results card*/
+.float-right {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.40);
 }
