@@ -183,7 +183,7 @@ var genderType = function () {
 
 // we are using cold weather, mild weather, and hot weather ranges
 function getSearchResults() {
-    var queryURL = "https://www.googleapis.com/customsearch/v1?q=" + clothesChosen + "+" + genderChosen + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
+    var queryURL = "https://www.googleapis.com/customsearch/v1?q=" + clothesChosen + "+clothes+" + genderChosen + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
     //var queryURL = "https://www.googleapis.com/customsearch/v1?q=warm+weather+clothes" + genderChosen + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
 
     $.ajax({
@@ -194,7 +194,10 @@ function getSearchResults() {
             console.log(response)
             // pull back 4 images for each days forecast
             //I know this is not the way to write this, just jotting down to correct tomorrow:
-            $("#clothing").html("<img scr>" + response.items[0].image.link);
+            $("#1").html("<img src=" + response.items[0].image.thumbnailLink + ">");
+            $("#2").html("<img src=" + response.items[1].image.thumbnailLink + ">");
+            $("#3").html("<img src=" + response.items[3].image.thumbnailLink + ">");            
+            $("#4").html("<img src=" + response.items[4].image.thumbnailLink + ">");            
             //let clothesDisplay = document.getElementById('clothing')
             //clothesDisplay.appendChild();
             // make the images clickable and link to the link back in the JSON
