@@ -51,23 +51,23 @@ let clothesfromTemp = function () {
 let accessoriesfromPrecip = function (precipType) {
     if (precipType >= 200 && precipType <= 531) {
         console.log('It will rain')
-        suggestedAccessories()
+        document.getElementById('accessories').innerHTML = 'Umbrella'
     }
     else if (precipType >= 600 && precipType <= 622 ) {
         console.log('It will snow')
-        suggestedAccessories()
+        document.getElementById('accessories').innerHTML = 'Gloves, Hat, and Winter Jacket'
     }
     else if (precipType >= 701 && precipType <= 781) {
         console.log('Exercise caution')
-        suggestedAccessories()
+        document.getElementById('accessories').innerHTML = 'Hide in your house'
     }
     else if (precipType === 800) {
         console.log('Clear skies!')
-        suggestedAccessories()
+        document.getElementById('accessories').innerHTML = 'Absolutely Nothing :)'
     }
     else if (precipType >= 801 && precipType <= 804)
         console.log('Cloudy Skies')
-        suggestedAccessories()
+        document.getElementById('accessories').innerHTML = 'No Accessories Needed'
     }
 
 //************************************** Nick's Open Weather API******************************** */
@@ -133,7 +133,6 @@ function displayWeather(response) {
         addWeatherView(dayFive)
     }
 };
-
 
 let addWeatherView = function (day) {
     //create new table row
