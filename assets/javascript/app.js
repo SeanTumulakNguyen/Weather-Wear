@@ -24,13 +24,36 @@ document.getElementById('submit').onclick = function () {
     console.log('Date Value Chosen: ' + dateTravel)
 
     document.getElementById('zipcode-input').value = ''
-    getWeather(zipInput)
+    getWeather(zipInput, getGenderAndClothes);
+}
 
-    console.log(temperature)
+function getGenderAndClothes() {
+    console.log("Temperature in submit", temperature);
+
     genderType()
-    // clothesType()
-    getSearchResults()
+    console.log('Return value of genderTyper() ' + genderChosen)
+    clothesType(temperature)
+    console.log('Return value of clothesType() ' + clothesChosen)
+}
 
+//************************************** Nick's Open Weather API******************************** */
+
+//Call API and search for requested giphy
+function getWeather(zipcode, callback) {
+    console.log("Open Weather API Search Enabled! Yeet!")
+    console.log("getWeather Function Input: " + zipcode)
+    
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcode + "&units=imperial&appid=37857072468d87a5127698015d17b9e0"
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+    .then(function (response) {
+        displayWeather(response);
+        callback();
+        console.log("Temperature after Ajax call: ", temperature)
+    });
 }
 
 let clothesfromTemp = function () {
@@ -55,23 +78,6 @@ let accessoriesfromPrecip = function () {
     } else {
         console.log('We may be freezing')
     }
-}
-//************************************** Nick's Open Weather API******************************** */
-
-//Call API and search for requested giphy
-function getWeather(zipcode) {
-    console.log("Open Weather API Search Enabled! Yeet!")
-    console.log("getWeather Function Input: " + zipcode)
-
-    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcode + "&units=imperial&appid=37857072468d87a5127698015d17b9e0"
-
-    $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-        .done(function (response) {
-            displayWeather(response);
-        })
 }
 
 //Display weather information
@@ -108,12 +114,15 @@ function displayWeather(response) {
     else if (dateInputValue == 4) {
         var dayFour = response.list[29]
         addWeatherView(dayFour)
+
     }
     //if Day 5 is selected...
     else if (dateInputValue == 5) {
         var dayFive = response.list[37]
         addWeatherView(dayFive)
     }
+    console.log('After addWeatherView():' + temperature)
+    return temperature
 };
 
 
@@ -137,7 +146,7 @@ let addWeatherView = function (day) {
     weatherDisplay.appendChild(newRow);
 
     temperature = day.main.temp;
-    weatherConditions = cond;
+    // weatherConditions = cond;
 }
 // logic to state in the search term the type of weather
 
@@ -158,23 +167,23 @@ var clothesType = function (temperature) {
         console.log(clothesChosen)
         return clothesChosen
     }
-};
+    return clothesChosen
+}
 
 var genderType = function () {
     if (genderInputValue == 1) {
         genderChosen = "for+women"
         console.log('If women are chosen: ' + genderChosen)
-        return genderChosen
     } else {
         genderChosen = "for+men"
         console.log('If men are chosen: ' + genderChosen)
-        return genderChosen
     }
-};
+    return genderChosen
+}
 
 // we are using cold weather, mild weather, and hot weather ranges
 function getSearchResults() {
-//    var queryURL = "https://www.googleapis.com/customsearch/v1?q=" + clothesChosen + "+" + genderChosen + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
+    //    var queryURL = "https://www.googleapis.com/customsearch/v1?q=" + clothesChosen + "+" + genderChosen + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
     var queryURL = "https://www.googleapis.com/customsearch/v1?q=warm+weather+clothes" + genderChosen + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
 
     $.ajax({
@@ -185,12 +194,9 @@ function getSearchResults() {
             console.log(response)
             // pull back 4 images for each days forecast
             //I know this is not the way to write this, just jotting down to correct tomorrow:
-            $("#clothing").html("<img scr>", this.items.0.image.link);
+            $("#clothing").html("<img scr>", this.items[0].image.link);
             //let clothesDisplay = document.getElementById('clothing')
             //clothesDisplay.appendChild();
             // make the images clickable and link to the link back in the JSON
         })
 };
-
-
-
