@@ -52,7 +52,9 @@
         <div class="row">
             <div class="col-lg-12">
 
-                <div class="card card-default float-left" style="width:40%">
+
+                <div class="card lg-12 border border-info card-default float-left" style="width:40%">
+                    <div class="card-header p-3 mb-2 bg-info text-white text-center">Info</div>
 
                     <div class="card-body">
                         <!--Zipcode Form/Row-->
@@ -65,30 +67,32 @@
                             </div>
                         </form>
 
-                        <!--Gender Preference Row-->
-                        <div class="row">
+                        <br>
+
+                        <!--Gender Preference-->
+                        <form role="form">
 
 
 
-                            <div class="form-group">
-                                <label for="gender-preference" class="col-sm-12" id="gender">Gender Preference:</label>
-                                <select class="form-control" id="gender-form">
-                                    <option value="1" id="female" class="col-sm-4">Female</option>
+                            <div class="form-group row">
+                                <label for="gender-preference" class="col-sm-4" id="gender">Gender Preference:</label>
+                                <select class="form-control col-sm-4" id="gender-form">
+                                    <option value="1" id="female">Female</option>
                                     <option value="2" id="male">Male</option>
                                 </select>
                             </div>
-                        </div>
+                        </form>
 
                         <br>
 
-                        <!--Row for days user is leaving-->
-                        <div class="row">
+                        
 
+                        <!--days user is leaving-->
+                        <form role="form">
 
-
-                            <div class="form-group">
-                                <label for="leave" id="days-leave" class="col-sm-12">I'm leaving in:</label>
-                                <select class="form-control" id="days-form">
+                            <div class="form-group row">
+                                <label for="leave" id="days-leave" class="col-sm-4">I'm leaving in:</label>
+                                <select class="form-control col-sm-4" id="days-form">
                                     <option value="1" id="one-day">One Day</option>
                                     <option value="2" id="two-days">Two Days</option>
                                     <option value="3" id="three-days">Three Days</option>
@@ -96,22 +100,20 @@
                                     <option value="5" id="five-days">Five Days</option>
                                 </select>
                             </div>
-                        </div>
+                        </form>
 
                         <!--Submit button-->
                         <button class="btn btn-info float-right" id="submit" type="submit">Submit</button>
                     </div>
                 </div>
 
-                <br>
-                <br>
+                
                 <div class="row">
 
-                    <!--<div class="col-md-1">
-                    </div>-->
+                    <!--Weather Forecast-->
                     <div class="col-lg-12">
                         <div class="card lg-12 border border-info float-right" style="width:100%">
-                            <div class="card-header p-3 mb-2 bg-info text-white">Weather Forecast</div>
+                            <div class="card-header p-3 mb-2 bg-info text-white text-center">Weather Forecast</div>
 
                             <div class="card-body">
                                 <table class="table table-sm table-hover" id='weather-chart'>
@@ -128,15 +130,29 @@
                         </div>
 
                     </div>
+
+                    <div class="col-lg-12">
+
+                        <br>
+
+                        <div class="card lg-12 border border-info float-right" style="width:100%">
+                            <div class="card-header p-3 mb-2 bg-info text-white text-center">Suggested Accesorries</div>
+
+                            <div class="card-body accesorries">
+                                <p class="card-text text-center accessories" id="accessories">umbrella</p>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
 
             </div>
         </div>
 
+        
         <br>
-        <br>
-
+        <!--Add Suggested Accesorries-->
         <div class="col-lg-12">
             <br>
             <br>
