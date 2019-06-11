@@ -40,6 +40,8 @@
 
 
 
+
+
 </head>
 
 <body>
@@ -118,6 +120,7 @@
                                 <table class="table table-sm table-hover" id='weather-chart'>
                                     <thead>
                                         <tr>
+                                            <th scope="col">Date</th>
                                             <th scope="col">Temperature</th>
                                             <th scope="col">Conditions</th>
                                         </tr>
@@ -135,10 +138,10 @@
                         <br>
 
                         <div class="card lg-12 border border-info float-right" style="width:100%">
-                            <div class="card-header p-3 mb-2 bg-info text-white text-center">Suggested Accesorries</div>
+                            <div class="card-header p-3 mb-2 bg-info text-white text-center">Suggested Accessories</div>
 
-                            <div class="card-body accesorries">
-                                <p class="card-text text-center accessories" id="accessories">umbrella</p>
+                            <div class="card-body accessories">
+                                <p class="card-text text-center accessories" id="accessories"></p>
                             </div>
                         </div>
 
@@ -169,9 +172,8 @@
 
             </div>
 
-        </div>
-    </div>
-    <script src="./assets/javascript/app.js"></script>
+            <script src="./assets/javascript/app.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 </body>
 
 </html>
