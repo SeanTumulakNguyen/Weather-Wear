@@ -24,13 +24,19 @@ document.getElementById('submit').onclick = function () {
     console.log('Date Value Chosen: ' + dateTravel)
 
     document.getElementById('zipcode-input').value = ''
-    getWeather(zipInput)
 
-    console.log(temperature)
-    genderType()
-    // clothesType()
+    getWeather(zipInput, getGenderAndClothes);
     getSearchResults()
 
+}
+
+function getGenderAndClothes() {
+    console.log("Temperature in submit", temperature);
+    genderType()
+    console.log('Return value of genderType() ' + genderChosen)
+    clothesType(temperature)
+    console.log('Return value of clothesType() ' + clothesChosen)
+    accessoriesfromPrecip(weatherConditions)
 }
 
 let clothesfromTemp = function () {
@@ -43,35 +49,47 @@ let clothesfromTemp = function () {
     }
 }
 
-let accessoriesfromPrecip = function () {
-    if (precipChance >= 60 && precipType === 'snow') {
-        console.log('There is a great chance it will snow')
-    } else if (precipChance >= 60 && precipType === 'rain') {
-        console.log('There is a great chance it will rain')
-    } else if (precipChance < 60 && precipChance >= 30 && precipType === 'snow') {
-        console.log('Chance of slush, flutters, and needing to shovel snow')
-    } else if (precipChance < 60 && precipChance >= 30 && precipType === 'rain') {
-        console.log('Bring an umbrella just in case')
-    } else {
-        console.log('We may be freezing')
+let accessoriesfromPrecip = function (precipType) {
+    if (precipType >= 200 && precipType <= 531) {
+        console.log('It will rain')
+        document.getElementById('accessories').innerHTML = 'Umbrella'
     }
-}
+    else if (precipType >= 600 && precipType <= 622 ) {
+        console.log('It will snow')
+        document.getElementById('accessories').innerHTML = 'Gloves, Hat, and Winter Jacket'
+    }
+    else if (precipType >= 701 && precipType <= 781) {
+        console.log('Exercise caution')
+        document.getElementById('accessories').innerHTML = 'Hide in your house'
+    }
+    else if (precipType === 800) {
+        console.log('Clear skies!')
+        document.getElementById('accessories').innerHTML = 'Absolutely Nothing :)'
+    }
+    else if (precipType >= 801 && precipType <= 804)
+        console.log('Cloudy Skies')
+        document.getElementById('accessories').innerHTML = 'No Accessories Needed'
+    }
+
 //************************************** Nick's Open Weather API******************************** */
 
 //Call API and search for requested giphy
-function getWeather(zipcode) {
+function getWeather(zipcode, callback) {
     console.log("Open Weather API Search Enabled! Yeet!")
     console.log("getWeather Function Input: " + zipcode)
-
+    
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcode + "&units=imperial&appid=37857072468d87a5127698015d17b9e0"
 
     $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-        .done(function (response) {
-            displayWeather(response);
-        })
+        url: queryURL,
+        method: "GET"
+    })
+    .then(function (response) {
+        displayWeather(response);
+        callback();
+        console.log("Temperature after Ajax call: ", temperature)
+        console.log('Weather Condition after Ajax call: ', weatherConditions )
+    });
 }
 
 //Display weather information
@@ -92,6 +110,7 @@ function displayWeather(response) {
         console.log("Day 1 Temp: " + dayOne.main.temp)
         console.log("Day 1 Description: " + dayOne.weather[0].description)
         console.log("Day 1 Cond. ID: " + dayOne.weather[0].id)
+
         addWeatherView(dayOne)
     }
     //If Day 2 is selected...
@@ -108,6 +127,7 @@ function displayWeather(response) {
     else if (dateInputValue == 4) {
         var dayFour = response.list[29]
         addWeatherView(dayFour)
+
     }
     //if Day 5 is selected...
     else if (dateInputValue == 5) {
@@ -116,66 +136,83 @@ function displayWeather(response) {
     }
 };
 
-
 let addWeatherView = function (day) {
     //create new table row
     var newRow = document.createElement("tr");
     //create new data cells in row
+    var newDataDate = document.createElement("td");
     var newDataTemp = document.createElement("td");
     var newDataCond = document.createElement("td");
+
+    //Get the date of the forecast
+    var utc = day.dt;
+    var newDate = Date(utc);
+    var d = moment(newDate).format("MM-DD-YYYY");
+
     //create variables to append to data cells
+    var forecastDate = document.createTextNode(d);
     var temp = document.createTextNode(day.main.temp);
     var cond = document.createTextNode(day.weather[0].description);
     //append variables to data cells
+    newDataDate.appendChild(forecastDate);
     newDataTemp.appendChild(temp);
     newDataCond.appendChild(cond);
     //append data cells to row
+    newRow.appendChild(forecastDate);
     newRow.appendChild(newDataTemp);
     newRow.appendChild(newDataCond);
     //append newRow to HTML
     let weatherDisplay = document.getElementById('weather-chart')
     weatherDisplay.appendChild(newRow);
 
+    //Get weather ID to change global variable
+    var iD = day.weather[0].id;
+    console.log("Weather ID for Sean: " + iD);
+
+    weatherID = iD;
     temperature = day.main.temp;
     weatherConditions = cond;
 }
+
 // logic to state in the search term the type of weather
 
 var clothesType = function (temperature) {
 
     // console.log(temperature)
 
+
     if (temperature >= 75) {
-        clothesChosen = "warm+weather"
+        clothesChosen = "summer"
         console.log(clothesChosen)
         return clothesChosen
     } else if (temperature < 75 && temperature >= 55) {
-        clothesChosen = "mild+weather"
+        clothesChosen = "spring"
         console.log(clothesChosen)
         return clothesChosen
     } else if (temperature < 55) {
-        clothesChosen = "cold+weather"
+        clothesChosen = "winter"
         console.log(clothesChosen)
         return clothesChosen
+
     }
-};
+    return clothesChosen
+}
 
 var genderType = function () {
     if (genderInputValue == 1) {
         genderChosen = "for+women"
         console.log('If women are chosen: ' + genderChosen)
-        return genderChosen
     } else {
         genderChosen = "for+men"
         console.log('If men are chosen: ' + genderChosen)
-        return genderChosen
     }
-};
+    return genderChosen
+}
 
 // we are using cold weather, mild weather, and hot weather ranges
 function getSearchResults() {
-//    var queryURL = "https://www.googleapis.com/customsearch/v1?q=" + clothesChosen + "+" + genderChosen + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
-    var queryURL = "https://www.googleapis.com/customsearch/v1?q=warm+weather+clothes" + genderChosen + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
+    var queryURL = "https://www.googleapis.com/customsearch/v1?q=" + clothesChosen + "+clothes+" + genderChosen + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
+    //var queryURL = "https://www.googleapis.com/customsearch/v1?q=warm+weather+clothes" + genderChosen + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
 
     $.ajax({
             url: queryURL,
@@ -185,12 +222,12 @@ function getSearchResults() {
             console.log(response)
             // pull back 4 images for each days forecast
             //I know this is not the way to write this, just jotting down to correct tomorrow:
-            $("#clothing").html("<img scr>", this.items.0.image.link);
+            $("#1").html("<img src=" + response.items[0].image.thumbnailLink + ">");
+            $("#2").html("<img src=" + response.items[1].image.thumbnailLink + ">");
+            $("#3").html("<img src=" + response.items[3].image.thumbnailLink + ">");            
+            $("#4").html("<img src=" + response.items[4].image.thumbnailLink + ">");            
             //let clothesDisplay = document.getElementById('clothing')
             //clothesDisplay.appendChild();
             // make the images clickable and link to the link back in the JSON
         })
 };
-
-
-

@@ -17,23 +17,17 @@ body {
   line-height: 150%;
 }
 
-.jumbotron {
-  background: none;
-  font-family: 'Martel Sans';
-  font-size: xx-large;
-  line-height: 45px;
+header{
+  padding: 60px;
+  text-align: center;
   color: white;
-  font: bold;
+  font-size: 90px;
 }
+
 
 /* input card*/
 .float-left {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.40);
-}
-
-/* removes shadow from button*/
-.button{
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 0px white(253, 251, 251, 0.726);
 }
 
 /* weather forcast card*/
