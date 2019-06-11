@@ -3,7 +3,7 @@ let weatherView = document.getElementById('weather-view')
 let clothingView = document.getElementById('clothing-view')
 
 //Global Variable
-var dateInputValue; 
+var dateInputValue;
 var genderInputValue;
 var temperature;
 var weatherConditions;
@@ -86,6 +86,7 @@ function displayWeather(response) {
         console.log("Day 1 Temp: " + dayOne.main.temp)
         console.log("Day 1 Description: " + dayOne.weather[0].description)
         console.log("Day 1 Cond. ID: " + dayOne.weather[0].id)
+
         addWeatherView(dayOne)
     }
     //If Day 2 is selected...
@@ -114,15 +115,25 @@ let addWeatherView = function (day) {
     //create new table row
     var newRow = document.createElement("tr");
     //create new data cells in row
+    var newDataDate = document.createElement("td");
     var newDataTemp = document.createElement("td");
     var newDataCond = document.createElement("td");
+
+    //Get the date of the forecast
+    var utc = day.dt;
+    var newDate = Date(utc);
+    var d = moment(newDate).format("MM-DD-YYYY");
+
     //create variables to append to data cells
+    var forecastDate = document.createTextNode(d);
     var temp = document.createTextNode(day.main.temp);
     var cond = document.createTextNode(day.weather[0].description);
     //append variables to data cells
+    newDataDate.appendChild(forecastDate);
     newDataTemp.appendChild(temp);
     newDataCond.appendChild(cond);
     //append data cells to row
+    newRow.appendChild(forecastDate);
     newRow.appendChild(newDataTemp);
     newRow.appendChild(newDataCond);
     //append newRow to HTML
@@ -131,9 +142,45 @@ let addWeatherView = function (day) {
 
     //Get weather ID to change global variable
     var iD = day.weather[0].id;
-    console.log("Weather ID for Sean: "+ iD);
+    console.log("Weather ID for Sean: " + iD);
 
     weatherID = iD;
     temperature = temp;
     weatherConditions = cond;
 }
+
+// logic to state in the search term the type of weather
+
+let clothesType = function () {
+    if (temperature >= 75) {
+        clothesType = "warm+weather"
+    } else if (temperature < 75 && temperature >= 55) {
+        clothesType = "mild+weather"
+    } else if (temperature < 55) {
+        clothesType = "cold+weather"
+    }
+}
+
+let genderType = function () {
+    if (genderInputValue = 1) {
+        clothesType = "for+women"
+    } else {
+        clothesType = "for+men"
+    }
+}
+//searchTerm will use the data sent back from the weather api and search for that locations fashion 
+// we are using cold weather, mild weather, and hot weather ranges
+var searchTerm = "clothesType+genderType"; //needs to take data from nick and covert to a search query
+var queryURL = "https://www.googleapis.com/customsearch/v1?q=" + searchTerm + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg";
+
+
+// Creating an AJAX call for the specific movie button being clicked
+$.ajax({
+    url: queryURL,
+    method: "GET"
+}).then(function (response) {
+    console.log(response)
+})
+
+// pull back 4 images for each days forecast
+// make the images clickable and link to the link back in the JSON
