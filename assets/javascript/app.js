@@ -146,15 +146,15 @@ var clothesType = function (temperature) {
     // console.log(temperature)
 
     if (temperature >= 75) {
-        clothesChosen = "warm+weather"
+        clothesChosen = "summer"
         console.log(clothesChosen)
         return clothesChosen
     } else if (temperature < 75 && temperature >= 55) {
-        clothesChosen = "mild+weather"
+        clothesChosen = "spring"
         console.log(clothesChosen)
         return clothesChosen
     } else if (temperature < 55) {
-        clothesChosen = "cold+weather"
+        clothesChosen = "winter"
         console.log(clothesChosen)
         return clothesChosen
     }
@@ -175,7 +175,7 @@ var genderType = function () {
 // we are using cold weather, mild weather, and hot weather ranges
 function getSearchResults() {
 //    var queryURL = "https://www.googleapis.com/customsearch/v1?q=" + clothesChosen + "+" + genderChosen + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
-    var queryURL = "https://www.googleapis.com/customsearch/v1?q=warm+weather+clothes" + genderChosen + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
+    var queryURL = "https://www.googleapis.com/customsearch/v1?q=summer" + genderChosen + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
 
     $.ajax({
             url: queryURL,
@@ -185,7 +185,7 @@ function getSearchResults() {
             console.log(response)
             // pull back 4 images for each days forecast
             //I know this is not the way to write this, just jotting down to correct tomorrow:
-            $("#clothing").html("<img scr>", this.items.0.image.link);
+           // $("#clothing").html("<img scr>", this.items.0.image.link);
             //let clothesDisplay = document.getElementById('clothing')
             //clothesDisplay.appendChild();
             // make the images clickable and link to the link back in the JSON
