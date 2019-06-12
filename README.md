@@ -14,8 +14,8 @@ Weather Wear allows the user to input zipcode, gender, and travel day preference
 * AJAX
 
 ## Authors
-Sean Nguyen - https://github.com/Juwami
-Nick Oetinger - https://github.com/noetinger
-Ellen Evans - https://github.com/ellennewellevans
-Bella Gianna - https://github.com/bellabluebells
-Markia Hodge - https://github.com/704kia
+Sean Nguyen - https://github.com/Juwami  
+Nick Oetinger - https://github.com/noetinger  
+Ellen Evans - https://github.com/ellennewellevans  
+Bella Gianna - https://github.com/bellabluebells  
+Markia Hodge - https://github.com/704kia  
