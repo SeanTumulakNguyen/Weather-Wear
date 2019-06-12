@@ -54,7 +54,7 @@ let accessoriesfromPrecip = function (weatherID) {
     console.log("Weather id in accessoriesFromPrecip: ", weatherID);
     if (weatherID >= 200 && weatherID <= 531) {
         console.log('It will rain')
-        document.getElementById('accessories').innerText = 'Umbrella'
+        document.getElementById('accessories').innerHTML = 'Umbrella, Rain Jacket, and Rain Boots'
     }
     else if (weatherID >= 600 && weatherID <= 622 ) {
         console.log('It will snow')
@@ -62,15 +62,15 @@ let accessoriesfromPrecip = function (weatherID) {
     }
     else if (weatherID >= 701 && weatherID <= 781) {
         console.log('Exercise caution')
-        document.getElementById('accessories').innerHTML = 'Hide in your house'
+        document.getElementById('accessories').innerHTML = 'Take caution and observe surroundings'
     }
     else if (weatherID === 800) {
         console.log('Clear skies!')
-        document.getElementById('accessories').innerHTML = 'Absolutely Nothing :)'
+        document.getElementById('accessories').innerHTML = 'Hat, Sunglasses, and Sunscreen :)'
     }
     else if (weatherID >= 801 && weatherID <= 804) {
         console.log('Cloudy Skies')
-        document.getElementById('accessories').innerHTML = 'No Accessories Needed'
+        document.getElementById('accessories').innerHTML = 'Sunscreen'
     }
 }
 
