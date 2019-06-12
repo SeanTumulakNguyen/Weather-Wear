@@ -3,13 +3,16 @@ let weatherView = document.getElementById('weather-view')
 let clothingView = document.getElementById('clothing-view')
 
 //Global Variable
-var dateInputValue ;
+var dateInputValue;
 var genderInputValue;
 var temperature;
 var weatherConditions;
+var clothesChosen;
+var genderChosen;
+var WeatherID
 
 // submitBtn to pull values of gender, zipcode, and dateTravel inputs
-document.getElementById('submit').onclick = function() {
+document.getElementById('submit').onclick = function () {
     let genderInput = document.getElementById('gender-form').value
     var zipInput = document.getElementById("zipcode-input").value;
     let dateTravel = document.getElementById('days-form').value
@@ -17,13 +20,24 @@ document.getElementById('submit').onclick = function() {
     genderInputValue = genderInput;
     dateInputValue = dateTravel;
 
-    console.log('Gender Chosen: ' + genderInput)
+    console.log('Gender Input Integer: ' + genderInput)
     console.log('Zipcode Typed: ' + zipInput)
     console.log('Date Value Chosen: ' + dateTravel)
 
     document.getElementById('zipcode-input').value = ''
-    getWeather(zipInput)
 
+    getWeather(zipInput, getGenderAndClothes);
+    getSearchResults()
+
+}
+
+function getGenderAndClothes() {
+    console.log("Temperature in submit", temperature);
+    genderType()
+    console.log('Return value of genderType() ' + genderChosen)
+    clothesType(temperature)
+    console.log('Return value of clothesType() ' + clothesChosen)
+    accessoriesfromPrecip(weatherID)
 }
 
 let clothesfromTemp = function () {
@@ -36,35 +50,49 @@ let clothesfromTemp = function () {
     }
 }
 
-let accessoriesrfromPrecip = function () {
-    if (precipChance >= 60 && precipType === 'snow') {
-        console.log('There is a great chance it will snow')
-    } else if (precipChance >= 60 && precipType === 'rain') {
-        console.log('There is a great chance it will rain')
-    } else if (precipChance < 60 && precipChance >= 30 && precipType === 'snow') {
-        console.log('Chance of slush, flutters, and needing to shovel snow')
-    } else if (precipChance < 60 && precipChance >= 30 && precipType === 'rain') {
-        console.log('Bring an umbrella just in case')
-    } else {
-        console.log('We may be freezing')
+let accessoriesfromPrecip = function (weatherID) {
+    console.log("Weather id in accessoriesFromPrecip: ", weatherID);
+    if (weatherID >= 200 && weatherID <= 531) {
+        console.log('It will rain')
+        document.getElementById('accessories').innerHTML = 'Umbrella, Rain Jacket, and Rain Boots'
+    }
+    else if (weatherID >= 600 && weatherID <= 622 ) {
+        console.log('It will snow')
+        document.getElementById('accessories').innerHTML = 'Gloves, Hat, and Winter Jacket'
+    }
+    else if (weatherID >= 701 && weatherID <= 781) {
+        console.log('Exercise caution')
+        document.getElementById('accessories').innerHTML = 'Take caution and observe surroundings'
+    }
+    else if (weatherID === 800) {
+        console.log('Clear skies!')
+        document.getElementById('accessories').innerHTML = 'Hat, Sunglasses, and Sunscreen :)'
+    }
+    else if (weatherID >= 801 && weatherID <= 804) {
+        console.log('Cloudy Skies')
+        document.getElementById('accessories').innerHTML = 'Sunscreen'
     }
 }
+
 //************************************** Nick's Open Weather API******************************** */
 
 //Call API and search for requested giphy
-function getWeather(zipcode) {
+function getWeather(zipcode, callback) {
     console.log("Open Weather API Search Enabled! Yeet!")
     console.log("getWeather Function Input: " + zipcode)
-
-    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcode + "&units=imperial&appid=37857072468d87a5127698015d17b9e0"
     
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipcode + "&units=imperial&appid=37857072468d87a5127698015d17b9e0"
+
     $.ajax({
         url: queryURL,
         method: "GET"
-        })
-    .done(function(response){
-            displayWeather(response);
-        })
+    })
+    .then(function (response) {
+        displayWeather(response);
+        callback();
+        console.log("Temperature after Ajax call: ", temperature)
+        console.log('Weather Condition after Ajax call: ', weatherConditions )
+    });
 }
 
 //Display weather information
@@ -80,7 +108,7 @@ function displayWeather(response) {
 
     //Apending weather information to the HTML
     //If Day 1 is selected...
-    if(dateInputValue == 1){
+    if (dateInputValue == 1) {
         var dayOne = response.list[5]
         console.log("Day 1 Temp: " + dayOne.main.temp)
         console.log("Day 1 Description: " + dayOne.weather[0].description)
@@ -88,47 +116,114 @@ function displayWeather(response) {
         addWeatherView(dayOne)
     }
     //If Day 2 is selected...
-    else if(dateInputValue == 2){
+    else if (dateInputValue == 2) {
         var dayTwo = response.list[13]
         addWeatherView(dayTwo)
     }
     //If Day 3 is selected...
-    else if(dateInputValue == 3){
+    else if (dateInputValue == 3) {
         var dayThree = response.list[21]
         addWeatherView(dayThree)
     }
     //if Day 4 is selected...
-    else if(dateInputValue == 4){
+    else if (dateInputValue == 4) {
         var dayFour = response.list[29]
         addWeatherView(dayFour)
+
     }
     //if Day 5 is selected...
-    else if(dateInputValue == 5){
-       var dayFive = response.list[37]
+    else if (dateInputValue == 5) {
+        var dayFive = response.list[37]
         addWeatherView(dayFive)
     }
 };
 
+let addWeatherView = function (day) {
+    document.getElementById("weather-chart").deleteRow(1);
+    //create new table row
+    var newRow = document.createElement("tr");
+    //create new data cells in row
+    var newDataDate = document.createElement("td");
+    var newDataTemp = document.createElement("td");
+    var newDataCond = document.createElement("td");
+    //Get the date of the forecast
+    var utc = day.dt;
+    var d = moment.unix(utc).format('MM-DD-YYYY')
 
-let addWeatherView = function(day) {
-//create new table row
-var newRow = document.createElement("tr");
-//create new data cells in row
-var newDataTemp = document.createElement("td");
-var newDataCond = document.createElement("td");
-//create variables to append to data cells
-var temp = document.createTextNode(day.main.temp);
-var cond = document.createTextNode(day.weather[0].description);
-//append variables to data cells
-newDataTemp.appendChild(temp);
-newDataCond.appendChild(cond);
-//append data cells to row
-newRow.appendChild(newDataTemp);
-newRow.appendChild(newDataCond);
-//append newRow to HTML
-let weatherDisplay = document.getElementById('weather-chart')
-weatherDisplay.appendChild(newRow);
+    //create variables to append to data cells
+    var forecastDate = document.createTextNode(d);
+    var temp = document.createTextNode(day.main.temp);
+    var cond = document.createTextNode(day.weather[0].description);
+    //append variables to data cells
+    newDataDate.appendChild(forecastDate);
+    newDataTemp.appendChild(temp);
+    newDataCond.appendChild(cond);
+    //append data cells to row
+    newRow.appendChild(forecastDate);
+    newRow.appendChild(newDataTemp);
+    newRow.appendChild(newDataCond);
+    //append newRow to HTML
+    let weatherDisplay = document.getElementById('weather-chart')
+    weatherDisplay.appendChild(newRow);
+    //Get weather ID to change global variable
+    var iD = day.weather[0].id;
+    console.log("Weather ID for Sean: " + iD);
 
-temperature = temp;
-weatherConditions = cond;
+    weatherID = iD;
+    temperature = day.main.temp;
+    weatherConditions = cond;
 }
+
+// logic to state in the search term the type of weather
+var clothesType = function (temperature) {
+
+    if (temperature >= 75) {
+        clothesChosen = "summer"
+        console.log(clothesChosen)
+        return clothesChosen
+    } else if (temperature < 75 && temperature >= 55) {
+        clothesChosen = "spring"
+        console.log(clothesChosen)
+        return clothesChosen
+    } else if (temperature < 55) {
+        clothesChosen = "winter"
+        console.log(clothesChosen)
+        return clothesChosen
+
+    }
+    return clothesChosen
+}
+
+var genderType = function () {
+    if (genderInputValue == 1) {
+        genderChosen = "for+women"
+        console.log('If women are chosen: ' + genderChosen)
+    } else {
+        genderChosen = "for+men"
+        console.log('If men are chosen: ' + genderChosen)
+    }
+    return genderChosen
+}
+
+// we are using cold weather, mild weather, and hot weather ranges
+function getSearchResults() {
+    var queryURL = "https://www.googleapis.com/customsearch/v1?q=" + clothesChosen + "+clothes+" + genderChosen + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
+    //var queryURL = "https://www.googleapis.com/customsearch/v1?q=warm+weather+clothes" + genderChosen + "&cx=013791775854691782139%3A83btdvy04wk&exactTerms=clothing&fileType=jpg&gl=United+States&imgSize=medium&imgType=photo&searchType=image&key=AIzaSyAaYcg84hynl1DkmKZ7cjIo2u_-6D3udKg"
+
+    $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+        .then(function (response) {
+            console.log(response)
+            // pull back 4 images for each days forecast
+            //I know this is not the way to write this, just jotting down to correct tomorrow:
+            $("#1").html("<a href=" + response.items[0].image.contextLink + "><img src=" + response.items[0].image.thumbnailLink + "></a>");
+            $("#2").html("<a href=" + response.items[1].image.contextLink + "><img src=" + response.items[1].image.thumbnailLink + "></a>");
+            $("#3").html("<a href=" + response.items[2].image.contextLink + "><img src=" + response.items[2].image.thumbnailLink + "></a>");
+            $("#4").html("<a href=" + response.items[3].image.contextLink + "><img src=" + response.items[3].image.thumbnailLink + "></a>");
+            //let clothesDisplay = document.getElementById('clothing')
+            //clothesDisplay.appendChild();
+            // make the images clickable and link to the link back in the JSON
+        })
+};
