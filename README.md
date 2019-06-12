@@ -3,6 +3,14 @@
 ## Goal
 
 ## Built With
+* HTML5
+* CSS
+* Javascript
+* Bootstrap
+* JQuery
+* APIs
+* Moment.js
+* AJAX
 
 ## Authors
 Sean Nguyen - https://github.com/Juwami
