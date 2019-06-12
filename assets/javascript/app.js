@@ -137,6 +137,7 @@ function displayWeather(response) {
 };
 
 let addWeatherView = function (day) {
+    document.getElementById("weather-chart").deleteRow(1);
     //create new table row
     var newRow = document.createElement("tr");
     //create new data cells in row
@@ -146,8 +147,7 @@ let addWeatherView = function (day) {
 
     //Get the date of the forecast
     var utc = day.dt;
-    var newDate = Date(utc);
-    var d = moment(newDate).format("MM-DD-YYYY");
+    var d = moment.unix(utc).format('MM-DD-YYYY')
 
     //create variables to append to data cells
     var forecastDate = document.createTextNode(d);
