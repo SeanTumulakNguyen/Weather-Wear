@@ -9,6 +9,7 @@ var temperature;
 var weatherConditions;
 var clothesChosen;
 var genderChosen;
+var WeatherID
 
 // submitBtn to pull values of gender, zipcode, and dateTravel inputs
 document.getElementById('submit').onclick = function () {
@@ -36,7 +37,7 @@ function getGenderAndClothes() {
     console.log('Return value of genderType() ' + genderChosen)
     clothesType(temperature)
     console.log('Return value of clothesType() ' + clothesChosen)
-    accessoriesfromPrecip(weatherConditions)
+    accessoriesfromPrecip(weatherID)
 }
 
 let clothesfromTemp = function () {
@@ -49,27 +50,29 @@ let clothesfromTemp = function () {
     }
 }
 
-let accessoriesfromPrecip = function (precipType) {
-    if (precipType >= 200 && precipType <= 531) {
+let accessoriesfromPrecip = function (weatherID) {
+    console.log("Weather id in accessoriesFromPrecip: ", weatherID);
+    if (weatherID >= 200 && weatherID <= 531) {
         console.log('It will rain')
-        document.getElementById('accessories').innerHTML = 'Umbrella'
+        document.getElementById('accessories').innerText = 'Umbrella'
     }
-    else if (precipType >= 600 && precipType <= 622 ) {
+    else if (weatherID >= 600 && weatherID <= 622 ) {
         console.log('It will snow')
         document.getElementById('accessories').innerHTML = 'Gloves, Hat, and Winter Jacket'
     }
-    else if (precipType >= 701 && precipType <= 781) {
+    else if (weatherID >= 701 && weatherID <= 781) {
         console.log('Exercise caution')
         document.getElementById('accessories').innerHTML = 'Hide in your house'
     }
-    else if (precipType === 800) {
+    else if (weatherID === 800) {
         console.log('Clear skies!')
         document.getElementById('accessories').innerHTML = 'Absolutely Nothing :)'
     }
-    else if (precipType >= 801 && precipType <= 804)
+    else if (weatherID >= 801 && weatherID <= 804) {
         console.log('Cloudy Skies')
         document.getElementById('accessories').innerHTML = 'No Accessories Needed'
     }
+}
 
 //************************************** Nick's Open Weather API******************************** */
 
@@ -110,7 +113,6 @@ function displayWeather(response) {
         console.log("Day 1 Temp: " + dayOne.main.temp)
         console.log("Day 1 Description: " + dayOne.weather[0].description)
         console.log("Day 1 Cond. ID: " + dayOne.weather[0].id)
-
         addWeatherView(dayOne)
     }
     //If Day 2 is selected...
@@ -143,12 +145,10 @@ let addWeatherView = function (day) {
     var newDataDate = document.createElement("td");
     var newDataTemp = document.createElement("td");
     var newDataCond = document.createElement("td");
-
     //Get the date of the forecast
     var utc = day.dt;
     var newDate = Date(utc);
     var d = moment(newDate).format("MM-DD-YYYY");
-
     //create variables to append to data cells
     var forecastDate = document.createTextNode(d);
     var temp = document.createTextNode(day.main.temp);
@@ -164,7 +164,6 @@ let addWeatherView = function (day) {
     //append newRow to HTML
     let weatherDisplay = document.getElementById('weather-chart')
     weatherDisplay.appendChild(newRow);
-
     //Get weather ID to change global variable
     var iD = day.weather[0].id;
     console.log("Weather ID for Sean: " + iD);
@@ -175,11 +174,7 @@ let addWeatherView = function (day) {
 }
 
 // logic to state in the search term the type of weather
-
 var clothesType = function (temperature) {
-
-    // console.log(temperature)
-
 
     if (temperature >= 75) {
         clothesChosen = "summer"
