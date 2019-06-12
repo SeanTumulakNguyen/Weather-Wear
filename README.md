@@ -1,6 +1,7 @@
 # Weather Wear
 
 ## Goal
+Weather Wear allows the user to input zipcode, gender, and travel day preference to pull weather data and provide clothing suggestions based on response.
 
 ## Built With
 * HTML5
