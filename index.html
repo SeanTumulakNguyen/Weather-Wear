@@ -54,10 +54,11 @@
             <div class="col-lg-12">
 
 
-                <div class="card lg-12 border border-info card-default float-left" style="width:40%">
-                    <div class="card-header p-3 mb-2 bg-info text-white text-center">Info</div>
+                <div class="card lg-12 border card-default float-left" style="width:40%">
+                    <div class="card-header p-3 mb-2 text-white text-center">Info</div>
 
                     <div class="card-body">
+
                         <!--Zipcode Form/Row-->
                         <form role="form">
                             <div class="form-group row">
@@ -73,8 +74,6 @@
                         <!--Gender Preference-->
                         <form role="form">
 
-
-
                             <div class="form-group row">
                                 <label for="gender-preference" class="col-sm-4" id="gender">Gender Preference:</label>
                                 <select class="form-control col-sm-4" id="gender-form">
@@ -82,11 +81,10 @@
                                     <option value="2" id="male">Male</option>
                                 </select>
                             </div>
+
                         </form>
 
                         <br>
-
-
 
                         <!--days user is leaving-->
                         <form role="form">
@@ -104,17 +102,17 @@
                         </form>
 
                         <!--Submit button-->
-                        <button class="btn btn-info float-right" id="submit" type="submit">Submit</button>
+                        <button class="btn float-right" id="submit" type="submit">Submit</button>
                     </div>
                 </div>
-
 
                 <div class="row">
 
                     <!--Weather Forecast-->
                     <div class="col-lg-12">
-                        <div class="card lg-12 border border-info float-right" style="width:100%">
-                            <div class="card-header p-3 mb-2 bg-info text-white text-center">Weather Forecast</div>
+
+                        <div class="card lg-12 border float-right" style="width:100%">
+                            <div class="card-header p-3 mb-2 text-white text-center">Weather Forecast</div>
 
                             <div class="card-body">
                                 <table class="table table-sm table-hover" id='weather-chart'>
@@ -123,6 +121,9 @@
                                             <th scope="col">Date</th>
                                             <th scope="col">Temperature</th>
                                             <th scope="col">Conditions</th>
+                                        </tr>
+                                        <tr>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -133,12 +134,13 @@
 
                     </div>
 
+                    <!--Accessories-->
                     <div class="col-lg-12">
 
                         <br>
 
-                        <div class="card lg-12 border border-info float-right" style="width:100%">
-                            <div class="card-header p-3 mb-2 bg-info text-white text-center">Suggested Accessories</div>
+                        <div class="card lg-12 border float-right" style="width:100%">
+                            <div class="card-header p-3 mb-2 text-white text-center">Suggested Accessories</div>
 
                             <div class="card-body accessories">
                                 <p class="card-text text-center accessories" id="accessories"></p>
@@ -158,16 +160,20 @@
         <div class="col-lg-12">
             <br>
             <br>
-            <div class="card lg-12 border border-info float-right" style="width:100%">
-                <div class="card-header p-3 mb-2 bg-info text-white text-center">Clothing Options</div>
-                
-                <div id="1"></div>
+            <div class="card lg-12 border float-right" style="width:100%">
+                <div class="card-header p-3 mb-2 text-white text-center">Clothing Options</div>
 
-                <div id="2"></div>
+                <div class="d-flex justify-content-around">
 
-                <div id="3"></div>
+                    <div class="p-2" id="1"></div>
 
-                <div id="4"></div>
+                    <div class="p-2" id="2"></div>
+
+                    <div class="p-2" id="3"></div>
+
+                    <div class="p-2" id="4"></div>
+
+                </div>
 
 
             </div>

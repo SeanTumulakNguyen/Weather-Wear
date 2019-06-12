@@ -24,10 +24,24 @@ header{
   font-size: 70px;
 }
 
-
 /* input card*/
 .float-left {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.40);
+}
+
+/* color for all card headers*/ 
+.card-header {
+  background-color: #667292;
+}
+
+/* makes all borders invisible*/
+.border {
+  border-style: invisible;
+}
+
+/* button*/
+#submit {
+  background-color:#daebe8 ;
 }
 
 /* weather forcast card*/
