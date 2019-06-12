@@ -136,6 +136,7 @@ function displayWeather(response) {
 };
 
 let addWeatherView = function (day) {
+    document.getElementById("weather-chart").deleteRow(1);
     //create new table row
     var newRow = document.createElement("tr");
     //create new data cells in row
