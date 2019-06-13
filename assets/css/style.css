@@ -36,12 +36,12 @@ header{
 
 /* makes all borders invisible*/
 .border {
-  border-style: invisible;
+ border-collapse: collapse;
 }
 
 /* button*/
 #submit {
-  background-color:#daebe8 ;
+  background-color: 	orange;
 }
 
 /* weather forcast card*/
