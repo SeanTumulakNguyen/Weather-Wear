@@ -17,11 +17,11 @@ body {
   line-height: 150%;
 }
 
-header {
-  padding: 60px;
+header{
+  padding:90px;
   text-align: center;
   color: white;
-  font-size: 90px;
+  font-size: 70px;
 }
 
 /* input card*/
@@ -36,12 +36,12 @@ header {
 
 /* makes all borders invisible*/
 .border {
-  border-style: invisible;
+ border-collapse: collapse;
 }
 
 /* button*/
 #submit {
-  background-color:#daebe8 ;
+  background-color: 	orange;
 }
 
 /* weather forcast card*/
